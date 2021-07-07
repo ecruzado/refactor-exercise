@@ -1,3 +1,5 @@
+const { mockedUsers } = require('./mock')
+
 const getDataType = code => {
   if (
     code === 702 ||
@@ -34,6 +36,13 @@ const getDataType = code => {
   }
 }
 
+const getUsers = () => {
+  return mockedUsers()
+    .then(data => data.map(item => ({ ...item, random: new Date().getTime() })))
+    .catch(error => console.log(error))
+}
+
 module.exports = {
-  getDataType
+  getDataType,
+  getUsers
 }
